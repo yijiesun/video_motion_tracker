@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 	sift_direct = horizion;
 
 	before_algo(argv);
-	int frame_cnt=get_video_frame(video_address, frame_address);
+	int frame_cnt=get_video_frame(video_address, frame_address, result_address,fname);
 	do_sift_ransac_algo(frame_address, result_address, frame_cnt, sift_direct);
 	getchar();
     return 0;
