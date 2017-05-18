@@ -1,16 +1,17 @@
 /*
-* Copyright (c) 2016 Rockchip Electronics Co. Ltd.
+* Copyright (c) 2017 Rockchip Electronics Co. Ltd.
 * Get all of the imge frame from a video file
 * Author: SYJ
 */
+
 #include "get_video_frame.h"
 using namespace cv;
 
-bool get_video_frame(char* video_address, char* frame_address)
+int get_video_frame(char* video_address, char* frame_address)
 {
 	std::cout << "video_address:" << video_address<<std::endl;
 	std::cout << "frame_address:" << frame_address << std::endl;
-#if 1
+
 	CvCapture *capture;
 	capture = cvCreateFileCapture(video_address);
 	assert(capture != NULL);
@@ -35,7 +36,6 @@ bool get_video_frame(char* video_address, char* frame_address)
 			break;
 	}
 	cvReleaseCapture(&capture);
-#endif
-	return 0;
+	return frame_num;
 }
 

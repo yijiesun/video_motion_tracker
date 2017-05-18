@@ -15,6 +15,12 @@
     <Filter Include="源文件\include">
       <UniqueIdentifier>{0a4d9084-cd3d-437d-ac4c-23fbb9acd242}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\include\sift_include">
+      <UniqueIdentifier>{7f895a69-d51f-4c22-8171-8b17b9cbac9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\src\sift">
+      <UniqueIdentifier>{6df8c05a-fcae-4546-8bca-46538ad0e96a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -23,14 +29,35 @@
     <ClInclude Include="get_video_frame.h">
       <Filter>源文件\include</Filter>
     </ClInclude>
-    <ClInclude Include="do_sift_ransac.h">
-      <Filter>源文件\include</Filter>
-    </ClInclude>
     <ClInclude Include="include.h">
       <Filter>源文件\include</Filter>
     </ClInclude>
     <ClInclude Include="video_motion_tracker.h">
       <Filter>源文件\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dirent.h">
+      <Filter>源文件\include\sift_include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imgfeatures.h">
+      <Filter>源文件\include\sift_include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\kdtree.h">
+      <Filter>源文件\include\sift_include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\minpq.h">
+      <Filter>源文件\include\sift_include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sift.h">
+      <Filter>源文件\include\sift_include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utils.h">
+      <Filter>源文件\include\sift_include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xform.h">
+      <Filter>源文件\include\sift_include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\do_sift_ransac.h">
+      <Filter>源文件\include\sift_include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -40,8 +67,26 @@
     <ClCompile Include="get_video_frame.cpp">
       <Filter>源文件\src</Filter>
     </ClCompile>
-    <ClCompile Include="do_sift_ransac.cpp">
-      <Filter>源文件\src</Filter>
+    <ClCompile Include="src\imgfeatures.c">
+      <Filter>源文件\src\sift</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kdtree.c">
+      <Filter>源文件\src\sift</Filter>
+    </ClCompile>
+    <ClCompile Include="src\minpq.c">
+      <Filter>源文件\src\sift</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sift.c">
+      <Filter>源文件\src\sift</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils.c">
+      <Filter>源文件\src\sift</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xform.c">
+      <Filter>源文件\src\sift</Filter>
+    </ClCompile>
+    <ClCompile Include="src\do_sift_ransac.c">
+      <Filter>源文件\src\sift</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

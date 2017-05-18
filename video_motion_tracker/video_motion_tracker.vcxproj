@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\opencv\opencv\build\include\opencv;D:\opencv\opencv\build\include;D:\opencv\opencv\build\include\opencv2;$(IncludePath)</IncludePath>
+    <IncludePath>D:\opencv\opencv\build\include\opencv;D:\opencv\opencv\build\include;D:\opencv\opencv\build\include\opencv2;./include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\opencv\opencv\build\x86\vc12\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,14 +151,27 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="do_sift_ransac.h" />
     <ClInclude Include="get_video_frame.h" />
     <ClInclude Include="include.h" />
+    <ClInclude Include="include\dirent.h" />
+    <ClInclude Include="include\imgfeatures.h" />
+    <ClInclude Include="include\kdtree.h" />
+    <ClInclude Include="include\minpq.h" />
+    <ClInclude Include="include\sift.h" />
+    <ClInclude Include="include\do_sift_ransac.h" />
+    <ClInclude Include="include\utils.h" />
+    <ClInclude Include="include\xform.h" />
     <ClInclude Include="video_motion_tracker.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="do_sift_ransac.cpp" />
     <ClCompile Include="get_video_frame.cpp" />
+    <ClCompile Include="src\imgfeatures.c" />
+    <ClCompile Include="src\kdtree.c" />
+    <ClCompile Include="src\minpq.c" />
+    <ClCompile Include="src\sift.c" />
+    <ClCompile Include="src\do_sift_ransac.c" />
+    <ClCompile Include="src\utils.c" />
+    <ClCompile Include="src\xform.c" />
     <ClCompile Include="video_motion_tracker.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,17 +1,19 @@
 /*
-* Copyright (c) 2016 Rockchip Electronics Co. Ltd.
+* Copyright (c) 2017 Rockchip Electronics Co. Ltd.
 * Do video motion tracker with SIFT&RANSAC algo
 * Author: SYJ
 */
+
 #include "video_motion_tracker.h"
 #include "get_video_frame.h"
 #include "do_sift_ransac.h"
 
 int main(int argc, char* argv[])
 {
+	sift_direct = horizion;
 	before_algo(argv);
-	int frame_num=get_video_frame(video_address, frame_address);
-	bool ret_sift = do_sift_ransac(frame_address, result_address);
+	int frame_cnt=get_video_frame(video_address, frame_address);
+	do_sift_ransac_algo(frame_address, result_address, frame_cnt, sift_direct);
 	getchar();
     return 0;
 }

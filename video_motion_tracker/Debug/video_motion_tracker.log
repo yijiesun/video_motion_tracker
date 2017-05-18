@@ -1,0 +1,25 @@
+﻿  get_video_frame.cpp
+d:\opencv\opencv\build\include\opencv2\core\mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv\opencv\build\include\opencv2\core\persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv\opencv\build\include\opencv2\core\utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv\opencv\build\include\opencv2\core\utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+e:\rk\new\run\video_motion_tracker\video_motion_tracker\video_motion_tracker\get_video_frame.cpp(32): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+  正在生成代码...
+  正在编译...
+  video_motion_tracker.cpp
+d:\opencv\opencv\build\include\opencv2\core\mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv\opencv\build\include\opencv2\core\persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv\opencv\build\include\opencv2\core\utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv\opencv\build\include\opencv2\core\utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+e:\rk\new\run\video_motion_tracker\video_motion_tracker\video_motion_tracker\video_motion_tracker.cpp(22): warning C4996: '_splitpath': This function or variable may be unsafe. Consider using _splitpath_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1096): note: 参见“_splitpath”的声明
+e:\rk\new\run\video_motion_tracker\video_motion_tracker\video_motion_tracker\video_motion_tracker.cpp(24): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+e:\rk\new\run\video_motion_tracker\video_motion_tracker\video_motion_tracker\video_motion_tracker.cpp(25): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+e:\rk\new\run\video_motion_tracker\video_motion_tracker\video_motion_tracker\video_motion_tracker.cpp(27): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+  正在生成代码...
+  video_motion_tracker.vcxproj -> E:\RK\new\run\video_motion_tracker\video_motion_tracker\video_motion_tracker\Debug\video_motion_tracker.exe
+  video_motion_tracker.vcxproj -> E:\RK\new\run\video_motion_tracker\video_motion_tracker\video_motion_tracker\Debug\video_motion_tracker.pdb (Full PDB)
