@@ -7,6 +7,7 @@
 IplImage* img_cur, *img_ref;
 
 char* video_address;
+char video_direct[_MAX_DIR];
 char result_address[_MAX_DIR];
 char frame_address[_MAX_DIR];
 char drive[_MAX_DRIVE];

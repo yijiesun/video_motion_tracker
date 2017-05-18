@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 	sift_direct = horizion;
 
 	before_algo(argv);
-	int frame_cnt=get_video_frame(video_address, frame_address, result_address,fname);
+	int frame_cnt=get_video_frame(video_address, frame_address, video_direct,fname);
 	do_sift_ransac_algo(frame_address, result_address, frame_cnt, sift_direct);
 	getchar();
     return 0;
@@ -23,8 +23,8 @@ void before_algo(char* argv[])
 {
 	video_address = argv[1];
 	_splitpath(video_address, drive, dirct, fname, ext);
-
-	sprintf(result_address, "%s%s%s", drive, dirct,"video_sift.txt");
+	sprintf(result_address, "%s%s%s", drive, dirct, "video_sift.txt");
+	sprintf(video_direct, "%s%s", drive, dirct);
 	sprintf(frame_address, "%s%s%s", drive, dirct, "frame");
 	char mkdir[256];
 	sprintf(mkdir, "%s%s", "md ", frame_address);

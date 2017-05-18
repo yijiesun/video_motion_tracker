@@ -17,7 +17,6 @@ int dist[32] = {
 int colDist[3] = { 5,4,4 };
 int rowDist[9] = { 21,21,20,21,21,20,21,21,21 };
 
-
 int get_video_frame(char* video_address, char* frame_address,char* video_direct,char* fname)
 {
 	std::cout << "video_address:" << video_address<<std::endl;
@@ -59,11 +58,7 @@ int get_video_frame(char* video_address, char* frame_address,char* video_direct,
 
 	int gyroCount = 0;
 	gyroCount = dataDenoise(data_file, de_data_file);
-	FILE* of_command;
-	of_command = fopen(command_file, "a+");
-	fseek(of_command, 0, SEEK_END);
-	fprintf(of_command, "%d%s%s", gyroCount," ",fname);
-	fclose(of_command);
+
 	return frame_num;
 }
 
