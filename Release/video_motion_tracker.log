@@ -1,0 +1,61 @@
+﻿  get_video_frame.cpp
+D:\opencv\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\opencv\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\opencv\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\opencv\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+get_video_frame.cpp(33): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+  video_motion_tracker.cpp
+D:\opencv\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\opencv\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\opencv\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\opencv\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+video_motion_tracker.cpp(25): warning C4996: '_splitpath': This function or variable may be unsafe. Consider using _splitpath_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdlib.h(1096): note: 参见“_splitpath”的声明
+video_motion_tracker.cpp(27): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+video_motion_tracker.cpp(28): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+video_motion_tracker.cpp(30): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+  imgfeatures.c
+src\imgfeatures.c(383): warning C4013: “cvEllipse”未定义；假设外部返回 int
+src\imgfeatures.c(383): warning C4244: “函数”: 从“double”转换到“int”，可能丢失数据
+src\imgfeatures.c(385): warning C4244: “函数”: 从“double”转换到“int”，可能丢失数据
+src\imgfeatures.c(387): warning C4013: “cvLine”未定义；假设外部返回 int
+src\imgfeatures.c(387): warning C4244: “函数”: 从“double”转换到“int”，可能丢失数据
+src\imgfeatures.c(389): warning C4244: “函数”: 从“double”转换到“int”，可能丢失数据
+  kdtree.c
+src\kdtree.c(559): warning C4244: “函数”: 从“double”转换到“int”，可能丢失数据
+  minpq.c
+  sift.c
+src\sift.c(189): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+src\sift.c(272): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+src\sift.c(283): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+src\sift.c(1394): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+src\sift.c(1527): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  do_sift_ransac.c
+src\do_sift_ransac.c(17): warning C4047: “函数”:“char *const ”与“char *[256]”的间接级别不同
+src\do_sift_ransac.c(17): warning C4024: “sprintf”: 形参和实参 1 的类型不同
+src\do_sift_ransac.c(18): warning C4047: “函数”:“char *const ”与“char *[256]”的间接级别不同
+src\do_sift_ransac.c(18): warning C4024: “sprintf”: 形参和实参 1 的类型不同
+src\do_sift_ransac.c(19): warning C4047: “函数”:“char *const ”与“char *[256]”的间接级别不同
+src\do_sift_ransac.c(19): warning C4024: “sprintf”: 形参和实参 1 的类型不同
+src\do_sift_ransac.c(23): warning C4047: “函数”:“const char *”与“char *[256]”的间接级别不同
+src\do_sift_ransac.c(23): warning C4024: “cvLoadImage”: 形参和实参 1 的类型不同
+src\do_sift_ransac.c(24): warning C4047: “函数”:“const char *”与“char *[256]”的间接级别不同
+src\do_sift_ransac.c(24): warning C4024: “cvLoadImage”: 形参和实参 1 的类型不同
+src\do_sift_ransac.c(32): warning C4047: “函数”:“char *”与“char *[256]”的间接级别不同
+src\do_sift_ransac.c(32): warning C4024: “match”: 形参和实参 3 的类型不同
+src\do_sift_ransac.c(20): warning C4477: “printf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“char **”
+src\do_sift_ransac.c(20): warning C4477: “printf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 2 拥有了类型“char **”
+src\do_sift_ransac.c(20): warning C4477: “printf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 3 拥有了类型“char **”
+src\do_sift_ransac.c(45): warning C4305: “初始化”: 从“double”到“float”截断
+  utils.c
+  xform.c
+src\xform.c(108): warning C4244: “函数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  正在生成代码
+  All 105 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  video_motion_tracker.vcxproj -> E:\RK\new\run\video_motion_tracker\video_motion_tracker\Release\video_motion_tracker.exe
+  video_motion_tracker.vcxproj -> E:\RK\new\run\video_motion_tracker\video_motion_tracker\Release\video_motion_tracker.pdb (Full PDB)
