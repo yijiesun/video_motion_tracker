@@ -44,9 +44,11 @@ int get_video_frame(char* video_address, char* frame_address,char* video_direct,
 
 	while (img_frame = cvQueryFrame(capture))
 	{
+		
 		std::cout << "\rExtract frame£º" << frame_num ;
 		fflush(stdout);
 		sprintf(image_name, "%s%s%d%s", frame_address, "\\frame", ++frame_num, ".jpg");
+
 		cvSaveImage(image_name, img_frame);
 
 		extract_watermarks(img_frame, data_file, command_file, frame_num, numFrames);

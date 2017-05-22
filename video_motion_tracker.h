@@ -19,7 +19,7 @@ int sift_direct;
 enum direct
 {
 	horizion,
-	verticla
+	verticl
 };
 
 void before_algo(char* argv[]);

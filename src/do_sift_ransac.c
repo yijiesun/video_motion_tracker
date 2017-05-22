@@ -60,14 +60,15 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 	double d0, d1;//feat1中每个特征点到最近邻和次近邻的距离  
 	matchNum = 0;//经距离比值法筛选后的匹配点对的个数 
 
-#if DRAW_RESULT_NO_RANSAC
+#if SAVE_SIFT_IMAGE
 	CvPoint pt1, pt2;//连线的两个端点  
 	IplImage  *stacked_ransac;
 	stacked_ransac = stack_imgs(img1, img2);//合成图像，显示经RANSAC算法筛选后的匹配结果  
 #endif											
 	kd_root = kdtree_build(feat2, n2);//根据图2的特征点集feat2建立k-d树，返回k-d树根给kd_root  
 		int n = min(n1, n2);
-
+	if (n > 1500)
+		n = 1500;
 	//遍历特征点集feat1，针对feat1中每个特征点feat，选取符合距离比值条件的匹配点，放到feat的fwd_match域中  
 	for (int i = 0; i < n; i++)
 	{
