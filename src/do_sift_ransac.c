@@ -87,7 +87,7 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 				pt1 = cvPoint(cvRound(feat->x), cvRound(feat->y));
 				pt2 = cvPoint(cvRound(nbrs[0]->x), cvRound(nbrs[0]->y));
 				pt2.y += img1->height;//由于两幅图是上下排列的，pt2的纵坐标加上图1的高度，作为连线的终点  
-				cvLine(stacked_ransac, pt1, pt2, CV_RGB(255, 0, 255), 1, 8, 0);//画出连线  
+				cvLine(stacked_ransac, pt1, pt2, CV_RGB(255, 0, 0), 2, 8, 0);//画出连线  
 #endif
 				matchNum++;//统计匹配点对的个数  
 				feat1[i].fwd_match = nbrs[0];//使点feat的fwd_match域指向其对应的匹配点  
@@ -122,7 +122,7 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 			pt1 = cvPoint(cvRound(feat->x), cvRound(feat->y));//图1中点的坐标  
 			pt2 = cvPoint(cvRound(feat->fwd_match->x), cvRound(feat->fwd_match->y));//图2中点的坐标(feat的匹配点)  
 			pt2.y += img1->height;//由于两幅图是上下排列的，pt2的纵坐标加上图1的高度，作为连线的终点  
-			cvLine(stacked_ransac, pt1, pt2, CV_RGB(0, 255, 0), 1, 8, 0);//画出连线  
+			cvLine(stacked_ransac, pt1, pt2, CV_RGB(0, 255, 0), 2, 8, 0);//画出连线  
 #endif
 			count++;
 #if SET_ROI

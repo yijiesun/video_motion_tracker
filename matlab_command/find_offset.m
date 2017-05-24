@@ -8,11 +8,11 @@ tmp=tmp+1;
 
 gyroadd=zeros(gyroNum);
 for i=1:gyroNum
-gyroadd(i)=gyro(i)+offset;
+gyroadd(i)=gyro(i,1)+offset;
 end
 
 index=0;
-
+interpoint=[];
 for i=1:gyroNum
 if(gyroadd(i)>video(1,1)&&gyroadd(i)<video(videoNum,1))
     index=index+1;
@@ -22,14 +22,16 @@ end
 end
 videointer=interp1(video(:,1),video(:,2),interpoint(:,1),'spline'); %interpolation 
 
-result=0;
-
-interpoint_size=size(interpoint,1);
-for i=1:interpoint_size%claculator euclidean distance of two curves
-result=result+(interpoint(i,2)-videointer(i))^2;
-end
+%result=0;
+%interpoint_size=size(interpoint,1);
+%for i=1:interpoint_size%claculator euclidean distance of two curves
+%result=result+abs(interpoint(i,2)-videointer(i));
+%end
+a=zeros(2,2);
+a=corrcoef(interpoint(:,2),videointer);
 res(tmp,1)=offset;
-res(tmp,2)=sqrt(result/interpoint_size);
+res(tmp,2)=1-a(1,2);
+%res(tmp,2)=result/interpoint_size;
 
 end%second loop
 

@@ -34,10 +34,8 @@ int get_video_frame(char* video_address, char* frame_address,char* video_direct,
 
 	char data_file[256];
 	char de_data_file[256];
-	char command_file[256];
 	sprintf(data_file, "%s%s", video_direct, "gyro_total.txt");
 	sprintf(de_data_file, "%s%s", video_direct, "gyro.txt");
-	sprintf(command_file, "%s%s", video_direct, "command.tmp");
 	IplImage *img_frame = 0;
 	int frame_num = 0;
 	char image_name[256];
@@ -51,7 +49,7 @@ int get_video_frame(char* video_address, char* frame_address,char* video_direct,
 
 		cvSaveImage(image_name, img_frame);
 
-		extract_watermarks(img_frame, data_file, command_file, frame_num, numFrames);
+		extract_watermarks(img_frame, data_file, frame_num, numFrames);
 
 		if (frame_num == numFrames)
 			break;
@@ -64,7 +62,7 @@ int get_video_frame(char* video_address, char* frame_address,char* video_direct,
 	return frame_num;
 }
 
-void extract_watermarks(IplImage* src, char* data_file, char* command_file, int frame_num, int frame_cnt)
+void extract_watermarks(IplImage* src, char* data_file, int frame_num, int frame_cnt)
 {
 	IplImage* dst = cvCreateImage(cvGetSize(src), IPL_DEPTH_8U, 1);//创建目标图像 
 	cvCvtColor(src, dst, CV_BGR2GRAY);
@@ -160,9 +158,8 @@ void extract_watermarks(IplImage* src, char* data_file, char* command_file, int 
 			gyro[n][m] = gyroTmp[m][n];
 		}
 	}
-	FILE* of_data, *of_command;
+	FILE* of_data;
 	of_data = fopen(data_file, "a+");
-	of_command = fopen(command_file, "a+");
 
 	for (int m = 0; m < 6; m++)
 	{
@@ -177,13 +174,8 @@ void extract_watermarks(IplImage* src, char* data_file, char* command_file, int 
 		if (goodData)
 			fprintf(of_data, "%s","\n");
 	}
-	if (frame_num == 1) //保存第一帧曝光时间戳
-		fprintf(of_command, "%d", gyro[6][1]);
-	if (frame_num == frame_cnt)//保存最后一帧曝光时间戳
-		fprintf(of_command, "%s%d%s%d%s", " ",gyro[6][1]," ", frame_num - 1," ");
 
 	fclose(of_data);
-	fclose(of_command);
 
 }
 
