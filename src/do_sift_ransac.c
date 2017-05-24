@@ -16,8 +16,6 @@ void do_sift_ransac_algo(char* frame_address,char* result_address,int frame_cnt,
 		printf("\nframe:%d\n", i);
 		sprintf(frame_name_1, "%s%s%d%s", frame_address, "\\frame", i, ".jpg");
 		sprintf(frame_name_2, "%s%s%d%s", frame_address, "\\frame", i + 1, ".jpg");
-		sprintf(save_name, "%s%s%d%s%s", frame_address, "\\frame", i, "_1", ".jpg");
-		printf("%s\n%s\n%s\n", frame_name_1, frame_name_2,save_name);
 
 		IplImage* img1, *img2;
 		img1 = cvLoadImage(frame_name_1, 1);
@@ -28,15 +26,33 @@ void do_sift_ransac_algo(char* frame_address,char* result_address,int frame_cnt,
 			printf("file not exist or end of sequence");
 			return;
 		}
+#if TEN_PIECE
+		for (float j = 0.0; j < 1.0; j += 0.1)
+		{
+			sprintf(save_name, "%s%s%.1f%s", frame_address, "\\frame", i + j, ".jpg");
+			IplImage* img1_block, *img2_block;
+			cvSetImageROI(img1, cvRect(0, j*img1->height, img1->width, 0.1*img1->height));
+			img1_block = cvCreateImage(cvSize(img1->width, 0.1*img1->height), IPL_DEPTH_8U, img1->nChannels);
+			cvCopy(img1, img1_block, 0);
+			cvResetImageROI(img1);
 
+			cvSetImageROI(img2, cvRect(0, j*img2->height, img2->width, 0.1*img2->height));
+			img2_block = cvCreateImage(cvSize(img2->width, 0.1*img2->height), IPL_DEPTH_8U, img2->nChannels);
+			cvCopy(img2, img2_block, 0);
+			cvResetImageROI(img2);
+
+			match(img1_block, img2_block, save_name, result_address, i + j, direct);
+
+		}
+#else
 		match(img1, img2, save_name, result_address, i,direct);
-
+#endif
 		cvReleaseImage(&img1);
 		cvReleaseImage(&img2);
 	}
 }
 
-void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_time,int direct)
+void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, float t_time,int direct)
 {
 	/* the maximum number of keypoint NN candidates to check during BBF search */
 	int KDTREE_BBF_MAX_NN_CHKS = 200;
@@ -60,7 +76,7 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 	double d0, d1;//feat1中每个特征点到最近邻和次近邻的距离  
 	matchNum = 0;//经距离比值法筛选后的匹配点对的个数 
 
-#if DRAW_RESULT_NO_RANSAC
+#if SAVE_SIFT_IMAGE
 	CvPoint pt1, pt2;//连线的两个端点  
 	IplImage  *stacked_ransac;
 	stacked_ransac = stack_imgs(img1, img2);//合成图像，显示经RANSAC算法筛选后的匹配结果  
@@ -134,12 +150,14 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 	double tranX = transation / count*1.0;
 	printf("位移量:%lf\n", tranX);
 
-	FILE* file;
-	file = fopen(txtFile, "a+");
-	fprintf(file, "%d%s", t_time, ",");
-	fprintf(file, "%lf\n", tranX);
-	fclose(file);
-
+	if (tranX != 0)
+	{
+		FILE* file;
+		file = fopen(txtFile, "a+");
+		fprintf(file, "%.1f%s", t_time, ",");
+		fprintf(file, "%lf\n", tranX);
+		fclose(file);
+	}
 #if SAVE_SIFT_IMAGE
 	cvSaveImage(savename, stacked_ransac, 0);
 	cvReleaseImage(&stacked_ransac);

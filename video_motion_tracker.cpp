@@ -10,7 +10,7 @@
 
 int main(int argc, char* argv[])
 {
-	sift_direct = horizion;
+	sift_direct = verticl;
 
 	before_algo(argv);
 	int frame_cnt=get_video_frame(video_address, frame_address, video_direct,fname);
