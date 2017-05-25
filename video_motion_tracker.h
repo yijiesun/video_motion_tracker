@@ -7,6 +7,7 @@
 IplImage* img_cur, *img_ref;
 
 char* video_address;
+char video_direct[_MAX_DIR];
 char result_address[_MAX_DIR];
 char frame_address[_MAX_DIR];
 char drive[_MAX_DRIVE];
@@ -18,7 +19,7 @@ int sift_direct;
 enum direct
 {
 	horizion,
-	verticla
+	verticl
 };
 
 void before_algo(char* argv[]);

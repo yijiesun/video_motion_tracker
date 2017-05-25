@@ -6,7 +6,7 @@
 
 #include "do_sift_ransac.h"
 
-void do_sift_ransac_algo(char* frame_address,char* result_address,int frame_cnt,int direct)
+void do_sift_ransac_algo(char* frame_address, char* result_address, int frame_cnt, int direct)
 {
 	char* frame_name_1[256];
 	char* frame_name_2[256];
@@ -16,8 +16,6 @@ void do_sift_ransac_algo(char* frame_address,char* result_address,int frame_cnt,
 		printf("\nframe:%d\n", i);
 		sprintf(frame_name_1, "%s%s%d%s", frame_address, "\\frame", i, ".jpg");
 		sprintf(frame_name_2, "%s%s%d%s", frame_address, "\\frame", i + 1, ".jpg");
-		sprintf(save_name, "%s%s%d%s%s", frame_address, "\\frame", i, "_1", ".jpg");
-		printf("%s\n%s\n%s\n", frame_name_1, frame_name_2,save_name);
 
 		IplImage* img1, *img2;
 		img1 = cvLoadImage(frame_name_1, 1);
@@ -28,15 +26,34 @@ void do_sift_ransac_algo(char* frame_address,char* result_address,int frame_cnt,
 			printf("file not exist or end of sequence");
 			return;
 		}
+#if TEN_PIECE
+		for (float j = 0.0; j < 1.0; j += 0.1)
+		{
+			sprintf(save_name, "%s%s%.1f%s", frame_address, "\\frame", i + j, ".jpg");
+			IplImage* img1_block, *img2_block;
+			cvSetImageROI(img1, cvRect(0, j*img1->height, img1->width, 0.1*img1->height));
+			img1_block = cvCreateImage(cvSize(img1->width, 0.1*img1->height), IPL_DEPTH_8U, img1->nChannels);
+			cvCopy(img1, img1_block, 0);
+			cvResetImageROI(img1);
 
-		match(img1, img2, save_name, result_address, i,direct);
+			cvSetImageROI(img2, cvRect(0, j*img2->height, img2->width, 0.1*img2->height));
+			img2_block = cvCreateImage(cvSize(img2->width, 0.1*img2->height), IPL_DEPTH_8U, img2->nChannels);
+			cvCopy(img2, img2_block, 0);
+			cvResetImageROI(img2);
 
+			match(img1_block, img2_block, save_name, result_address, i + j, direct);
+			cvReleaseImage(&img1_block);
+			cvReleaseImage(&img2_block);
+		}
+#else
+		match(img1, img2, save_name, result_address, i, direct);
+#endif
 		cvReleaseImage(&img1);
 		cvReleaseImage(&img2);
 	}
 }
 
-void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_time,int direct)
+void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, float t_time, int direct)
 {
 	/* the maximum number of keypoint NN candidates to check during BBF search */
 	int KDTREE_BBF_MAX_NN_CHKS = 200;
@@ -60,25 +77,25 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 	double d0, d1;//feat1中每个特征点到最近邻和次近邻的距离  
 	matchNum = 0;//经距离比值法筛选后的匹配点对的个数 
 
-#if DRAW_RESULT_NO_RANSAC
+#if SAVE_SIFT_IMAGE
 	CvPoint pt1, pt2;//连线的两个端点  
 	IplImage  *stacked_ransac;
 	stacked_ransac = stack_imgs(img1, img2);//合成图像，显示经RANSAC算法筛选后的匹配结果  
 #endif											
 	kd_root = kdtree_build(feat2, n2);//根据图2的特征点集feat2建立k-d树，返回k-d树根给kd_root  
-		int n = min(n1, n2);
+	int n = min(n1, n2);
 
 	//遍历特征点集feat1，针对feat1中每个特征点feat，选取符合距离比值条件的匹配点，放到feat的fwd_match域中  
 	for (int i = 0; i < n; i++)
 	{
 		feat = feat1 + i;//第i个特征点的指针  
-		//在kd_root中搜索目标点feat的2个最近邻点，存放在nbrs中，返回实际找到的近邻点个数  
+						 //在kd_root中搜索目标点feat的2个最近邻点，存放在nbrs中，返回实际找到的近邻点个数  
 		int k = kdtree_bbf_knn(kd_root, feat, 2, &nbrs, KDTREE_BBF_MAX_NN_CHKS);
 		if (k == 2)
 		{
 			d0 = descr_dist_sq(feat, nbrs[0]);//feat与最近邻点的距离的平方  
 			d1 = descr_dist_sq(feat, nbrs[1]);//feat与次近邻点的距离的平方  
-			//若d0和d1的比值小于阈值NN_SQ_DIST_RATIO_THR，则接受此匹配，否则剔除  
+											  //若d0和d1的比值小于阈值NN_SQ_DIST_RATIO_THR，则接受此匹配，否则剔除  
 
 			if (d0 < d1 * NN_SQ_DIST_RATIO_THR)
 			{   //将目标点feat和最近邻点作为匹配点对  
@@ -92,7 +109,7 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 				feat1[i].fwd_match = nbrs[0];//使点feat的fwd_match域指向其对应的匹配点  
 			}
 		}
-		if(nbrs)
+		if (nbrs)
 			free(nbrs);//释放近邻数组  
 	}
 
@@ -125,7 +142,7 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 #endif
 			count++;
 #if SET_ROI
-			}
+		}
 #endif
 	}
 	if (count == 0)
@@ -134,22 +151,24 @@ void match(IplImage *img1, IplImage *img2, char* savename, char* txtFile, int t_
 	double tranX = transation / count*1.0;
 	printf("位移量:%lf\n", tranX);
 
-	FILE* file;
-	file = fopen(txtFile, "a+");
-	fprintf(file, "%d%s", t_time, ",");
-	fprintf(file, "%lf\n", tranX);
-	fclose(file);
-
+	if (tranX != 0)
+	{
+		FILE* file;
+		file = fopen(txtFile, "a+");
+		fprintf(file, "%.1f%s", t_time, ",");
+		fprintf(file, "%lf\n", tranX);
+		fclose(file);
+	}
 #if SAVE_SIFT_IMAGE
 	cvSaveImage(savename, stacked_ransac, 0);
 	cvReleaseImage(&stacked_ransac);
 #endif
-	if(n1)
+	if (n1)
 		free(feat1);
-	if(n2)
+	if (n2)
 		free(feat2);
-	if(n_inliers)
+	if (n_inliers)
 		free(inliers);
-	if(n2)
+	if (n2)
 		free(kd_root);
 }
