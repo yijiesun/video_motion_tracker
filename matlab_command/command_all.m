@@ -18,7 +18,7 @@ gyro(:,1)=gyrodata(:,1);
 gyro(:,2)=gyrodata(:,2);
 
 for i=1:gyroNum
-gyro(i,1)=(gyro(i,1)-gyrodata(1,1))/1000000;
+gyro(i,1)=(gyro(i,1)-gyrodata(1,1))/1000000;%归一化，以秒为单位
 end
 
 %%%%%%%%%%%%main loop%%%%%%%%%%%%
@@ -30,14 +30,16 @@ video=zeros(videoNum,2);
 for i=1:videoNum
 %video(i,1)=(videodata(i,1)+0.1-1)/minD(1);%if use 10 piece SIFT
 video(i,1)=videodata(i,1)/minD(1);%minD(1,1)save best fps
-video(i,2)=videodata(i,2)*140;
+video(i,2)=videodata(i,2)*140;%video放大倍率
 end
 
+%按照求出的fps和时延进行对齐plot
 gyroadd=zeros(gyroNum,2);
 for i=1:gyroNum
 gyroadd(i,1)=gyro(i,1)+minD(2);
 end
 
+%防止在函数定义域之外插值，也可以不插值画图
 index=0;
 interpoint=[];
 for i=1:gyroNum
@@ -47,6 +49,8 @@ if(gyroadd(i,1)>video(1,1)&&gyroadd(i,1)<video(videoNum,1))
     interpoint(index,2)=gyro(i,2);
 end
 end
+
+%用gyro插值video
 videointer=interp1(video(:,1),video(:,2),interpoint(:,1),'spline');  
 
 figure(1);

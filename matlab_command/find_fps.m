@@ -1,18 +1,22 @@
 function find_fps()
+
 global video minX videoNum videodata minD;
+
 hwait=waitbar(0,'请等待>>>>>>>>');
-fps=30;
+
+fps=30;%给一个大致的fps值
 dyn=0;
 fps_arry=zeros(200,3);
-for fps_dyn=fps-1:0.01:fps+1
+
+for fps_dyn=fps-1:0.01:fps+1%遍历的长度大会严重影响速度
 dyn=dyn+1;
    str=['正在运行中',num2str(dyn),'/400'];
    waitbar(dyn/400,hwait,str); 
 
 for i=1:videoNum
-%video(i,1)=(videodata(i,1)+0.1-1)/minD(1);%if use 10 piece SIFT
+%video(i,1)=(videodata(i,1)+0.1-1)/fps_dyn;%if use 10 piece SIFT
 video(i,1)=videodata(i,1)/fps_dyn;
-video(i,2)=videodata(i,2)*140;
+video(i,2)=videodata(i,2)*140;%video放大倍率
 end
 
 %%%%%%%%%%%%second loop%%%%%%%%%%%%
