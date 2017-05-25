@@ -10,6 +10,7 @@ dyn=dyn+1;
    waitbar(dyn/400,hwait,str); 
 
 for i=1:videoNum
+%video(i,1)=(videodata(i,1)+0.1-1)/minD(1);%if use 10 piece SIFT
 video(i,1)=videodata(i,1)/fps_dyn;
 video(i,2)=videodata(i,2)*140;
 end

@@ -28,6 +28,7 @@ find_fps();
 %claculator curve stuff use best parameter as above
 video=zeros(videoNum,2);
 for i=1:videoNum
+%video(i,1)=(videodata(i,1)+0.1-1)/minD(1);%if use 10 piece SIFT
 video(i,1)=videodata(i,1)/minD(1);%minD(1,1)save best fps
 video(i,2)=videodata(i,2)*140;
 end
